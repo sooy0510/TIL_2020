@@ -8,7 +8,7 @@ Tags: Crolling, python
 
 # 웹서비스
 
-![images/Untitled 18.png](Crolling/Untitled 18.png)
+![images/Untitled 18.png](images/Untitled 18.png)
 
 <br>
 
