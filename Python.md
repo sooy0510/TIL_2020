@@ -1,4 +1,4 @@
-# images기초
+# Python기초
 
 Created By: sooyeon Lee
 Last Edited: Jan 13, 2020 10:06 PM
