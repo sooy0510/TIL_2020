@@ -471,11 +471,15 @@
 
 - https://ngrok.com/download
 
-- 실행파일 실행
+- Ngrok 실행파일 실행
 
-  ```bash
-  ngrok http 5000
-  ```
+  - 재실행할때마다 제공 uri 변경, fulfillment 재설정 해줘야함
+  
+    ```bash
+    ngrok http 5000
+    ```
+  
+    
 
 <br>
 
@@ -572,3 +576,14 @@
   <br>
 
   > ![image-20200115200541882](images/image-20200115200541882.png)
+
+
+
+<br>
+
+<br>
+
+### json 결과 편하게 보기
+
+- jsonViewer사용
+
