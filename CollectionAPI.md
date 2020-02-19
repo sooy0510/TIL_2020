@@ -107,3 +107,209 @@
 
   
 
+<br>
+
+<br>
+
+## Stack
+
+- search(int) : index+1을 반환
+
+  ```java
+  Stack<Integer> sInt = new Stack<Integer>();
+  sInt.push(1);
+  sInt.push(4);
+  sInt.push(7);
+  sInt.push(1);
+  sInt.push(5);
+  
+  System.out.println();
+  System.out.println(sInt.search(7)); //index+1
+  => 3
+  //없으면 -1반환
+  ```
+
+<br>
+
+<br>
+
+## PriorityQueue
+
+- 제네릭에 사용자지정 클래스를 사용하면 내부적으로 Comparable을 호출하려고 함
+
+- CompareTo가 오버라이딩 안되어있으면 에러
+
+- offer하는 동시에 정렬
+
+- Comparable 사용 예제
+
+  - QueuePriorityQueueTest
+
+    ```java
+    import java.util.PriorityQueue;
+    import java.util.Queue;
+    
+    public class QueuePriorityQueueTest {
+    
+        public static void main(String[] args) {
+            //Point내에서 우선순위를 따질 수 없어서 오류, Comparable을 호출하려고 함
+            Queue<Point> qPoint = new PriorityQueue<Point>();
+            qPoint.offer(new Point(14,27));
+            qPoint.offer(new Point(5,5));
+            qPoint.offer(new Point(17,1));
+            qPoint.offer(new Point(8,63));
+            qPoint.offer(new Point(5,2));
+    
+            System.out.println(qPoint.size());
+            System.out.println(qPoint.poll() + " " + qPoint.poll());
+            
+            //Iterator로 출력하면 랜덤으로 리턴(내부적으로 정렬은 하지만 리턴값은 랜덤)
+            Iterator<Point> itr = qPoint.iterator();
+            while(itr.hasNext()) {
+                System.out.print(itr.next()+" ");
+            }
+        }
+    
+    }
+    
+    ```
+
+  <br>
+
+  - Point
+
+    ```java
+    package chap7.base;
+    
+    public class Point implements Comparable<Point> {
+        public int r;
+        public int c;
+    
+        public Point() {}
+        public Point(int r, int c) {
+            super();
+            this.r = r;
+            this.c = c;
+        }
+    
+       ...
+    
+        @Override
+        //r 먼저 비교하고, 같으면 c로 비교 - 오름차순
+        public int compareTo(Point o) {
+            if(this.r == o.r) {
+                return this.c - o.c;
+            }else {
+                return this.r - o.r;
+            }
+        }
+    
+    }
+    
+    ```
+
+  <br>
+
+  - 실행결과
+
+    ```java
+    5
+    [5,2] [5,5]
+    [8,63] [14,27] [17,1] 
+    ```
+
+<br>
+
+<br>
+
+## ArrayList
+
+- remove : index와 요소값으로 삭제가능
+
+  ```java
+  public class CollectionRemoveTest {
+  
+      public static void main(String[] args) {
+          ArrayList<String> al = new ArrayList<String>();
+          al.add("Cass");
+          al.add("IsBack");
+          al.add("Cass");
+          al.add("Terra");
+          al.add("Jangsu");
+          al.add(new String("Jangsu"));
+  
+          Iterator<String> itrAl = al.iterator();
+          while(itrAl.hasNext()) {
+              System.out.print(itrAl.next()+" ");
+          }
+  
+          //al.remove(1);
+          al.remove("Jangsu");
+          al.remove("Jangsu");
+  
+          System.out.println();
+  
+          itrAl = al.iterator();
+          while(itrAl.hasNext()) {
+              System.out.print(itrAl.next()+" ");
+          }
+      }
+  
+  }
+  
+  => Cass IsBack Cass Terra Jangsu Jangsu 
+  Cass IsBack Cass Terra 
+  
+  ```
+
+<br>
+
+<br>
+
+## Map
+
+- object가 key와 value의 쌍으로 관리됨
+
+- 똑같은 key를 가진 요소가 추가되면 Overwrite효과(덮어씌운다)
+
+- keySet() : key를 set형태로 받아온다
+
+  ```java
+  public class MapHashMapTest {
+  
+      public static void main(String[] args) {
+          Map<String, Integer> productPrice = new HashMap<>();
+          productPrice.put("TV", 220);
+          productPrice.put("Refrigerator", 180);
+          productPrice.put("Desk", 40);
+          productPrice.put("Computer", 70);
+          productPrice.put("Desk", 50);	//Overwrite, 덮어씀
+  
+          System.out.println(productPrice.size());
+  
+          int price = productPrice.get("Computer");
+          System.out.println("Computer Price is "+price);
+  
+          Set<String> keys = productPrice.keySet();
+  
+          for(String key : keys) {
+              System.out.print(key +" " + productPrice.get(key) + " | ");
+          }
+  
+          if(productPrice.containsKey("Desk")) {
+              System.out.println("Desk key exist!!");
+          }
+      }
+  
+  }
+  
+  => 4
+  Computer Price is 70
+  TV 220 | Computer 70 | Refrigerator 180 | Desk 50 | Desk key exist!!
+  ```
+
+- containsKey([key]) : key로 검색
+
+- containsValue([value]) : value로 검색
+
+ 
